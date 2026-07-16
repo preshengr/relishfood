@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Relish Food — Bakery, Breakfast &amp; Juice Bar in Garki II, Abuja</title>
+<meta name="description" content="Relish Food: neighbourhood bakery, breakfast spot and cold-pressed juice bar in Garki II, Abuja. Open daily except Tuesday, 7AM–10PM. Dine-in &amp; takeaway.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2A1B12;
+    --ink-soft:#5A4536;
+    --paper:#FBF1DC;
+    --paper-soft:#FFFBF2;
+    --paper-deep:#F3E4BE;
+    --papaya:#F2760A;
+    --papaya-dark:#C85A00;
+    --herb:#3F6B34;
+    --herb-light:#75986a;
+    --berry:#B23A2E;
+    --line: rgba(42,27,18,0.14);
+    --shadow: 0 18px 40px -18px rgba(42,27,18,0.35);
+    --radius-lg: 28px;
+    --radius-md: 18px;
+    --wrap: 1180px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3{
+    font-family:'Unbounded', sans-serif;
+    margin:0;
+    color:var(--ink);
+    letter-spacing:-0.01em;
+  }
+
+  a{color:inherit;}
+  img,svg{display:block; max-width:100%;}
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    font-size:12.5px;
+    font-weight:600;
+    color:var(--papaya-dark);
+  }
+
+  .wrap{
+    max-width:var(--wrap);
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  :focus-visible{
+    outline:3px solid var(--herb);
+    outline-offset:3px;
+    border-radius:6px;
+  }
+
+  /* ---------- NAV ---------- */
+  header.site-nav{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(251,241,220,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 0;
+    gap:16px;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+  }
+  .brand svg{width:40px; height:40px; flex-shrink:0;}
+  .brand-word{
+    font-family:'Unbounded', sans-serif;
+    font-weight:700;
+    font-size:18px;
+    line-height:1.1;
+  }
+  .brand-word span{
+    display:block;
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:500;
+    font-size:10.5px;
+    letter-spacing:0.12em;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+    margin-top:2px;
+  }
+  .nav-right{
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  #status-pill{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    font-weight:600;
+    padding:7px 12px;
+    border-radius:999px;
+    background:var(--paper-soft);
+    border:1px solid var(--line);
+    white-space:nowrap;
+  }
+  .dot{
+    width:8px; height:8px; border-radius:50%;
+    background:var(--herb);
+    box-shadow:0 0 0 3px rgba(63,107,52,0.18);
+  }
+  .dot.closed{background:var(--berry); box-shadow:0 0 0 3px rgba(178,58,46,0.18);}
+  .btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:600;
+    font-size:13px;
+    letter-spacing:0.03em;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:11px 20px;
+    border-radius:999px;
+    border:1.5px solid transparent;
+    transition:transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  }
+  .btn-primary{
+    background:var(--papaya);
+    color:var(--paper-soft);
+    box-shadow:0 10px 24px -10px rgba(242,118,10,0.65);
+  }
+  .btn-primary:hover{transform:translateY(-2px); background:var(--papaya-dark);}
+  .btn-ghost{
+    background:transparent;
+    border-color:var(--ink);
+    color:var(--ink);
+  }
+  .btn-ghost:hover{transform:translateY(-2px); background:var(--ink); color:var(--paper-soft);}
+  .nav-call{display:none;}
+  @media(min-width:720px){.nav-call{display:inline-flex;}}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    padding:64px 0 84px;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:40px;
+    align-items:center;
+  }
+  @media(max-width:900px){.hero-grid{grid-template-columns:1fr; text-align:left;}}
+
+  .hero h1{
+    font-size:clamp(2.5rem, 5.4vw, 4.2rem);
+    font-weight:800;
+    line-height:1.02;
+    margin:18px 0 22px;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--papaya);
+  }
+  .hero p.lede{
+    font-size:18px;
+    max-width:46ch;
+    color:var(--ink-soft);
+    margin-bottom:30px;
+  }
+  .hero-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+    margin-bottom:28px;
+  }
+  .hero-meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:22px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:var(--ink-soft);
+  }
+  .hero-meta strong{color:var(--ink); font-weight:600;}
+
+  .hero-emblem{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .hero-emblem svg{width:min(420px, 88vw); animation:spin-slow 40s linear infinite;}
+  @keyframes spin-slow{from{transform:rotate(0deg);} to{transform:rotate(360deg);}}
+  .hero-emblem .emblem-static{
+    position:absolute;
+    width:min(420px, 88vw);
+  }
+
+  /* decorative scattered icons */
+  .hero::before, .hero::after{
+    content:"";
+    position:absolute;
+    border-radius:50%;
+    filter:blur(0px);
+  }
+  .hero::before{
+    width:420px; height:420px;
+    background:radial-gradient(circle, rgba(242,118,10,0.16), transparent 70%);
+    top:-120px; right:-100px;
+  }
+  .hero::after{
+    width:340px; height:340px;
+    background:radial-gradient(circle, rgba(63,107,52,0.14), transparent 70%);
+    bottom:-140px; left:-80px;
+  }
+
+  /* ---------- CATEGORY STRIP ---------- */
+  .strip{
+    background:var(--ink);
+    color:var(--paper-soft);
+  }
+  .strip .wrap{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:0;
+  }
+  @media(max-width:800px){.strip .wrap{grid-template-columns:repeat(2, 1fr);}}
+  .strip-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:26px 18px;
+    border-right:1px solid rgba(251,241,220,0.14);
+  }
+  .strip-item:last-child{border-right:none;}
+  @media(max-width:800px){
+    .strip-item:nth-child(2n){border-right:none;}
+    .strip-item{border-bottom:1px solid rgba(251,241,220,0.14);}
+  }
+  .strip-item svg{width:30px; height:30px; flex-shrink:0; stroke:var(--papaya);}
+  .strip-item .label{
+    font-family:'Unbounded', sans-serif;
+    font-weight:600;
+    font-size:14.5px;
+  }
+  .strip-item .sub{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:rgba(251,241,220,0.6);
+    margin-top:2px;
+  }
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{padding:88px 0;}
+  .section-head{
+    max-width:640px;
+    margin-bottom:48px;
+  }
+  .section-head h2{
+    font-size:clamp(1.9rem, 3.4vw, 2.7rem);
+    font-weight:700;
+    margin-top:12px;
+    line-height:1.12;
+  }
+  .section-head p{
+    margin-top:14px;
+    color:var(--ink-soft);
+    font-size:16.5px;
+    max-width:56ch;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about{
+    background:var(--paper-deep);
+  }
+  .about-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:56px;
+    align-items:center;
+  }
+  @media(max-width:880px){.about-grid{grid-template-columns:1fr;}}
+  .about-text p{
+    color:var(--ink-soft);
+    font-size:16.5px;
+    margin:0 0 16px;
+    max-width:52ch;
+  }
+  .about-facts{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    margin-top:28px;
+  }
+  .fact{
+    background:var(--paper-soft);
+    border:1px solid var(--line);
+    border-radius:var(--radius-md);
+    padding:18px 16px;
+  }
+  .fact .num{
+    font-family:'Unbounded', sans-serif;
+    font-weight:800;
+    font-size:26px;
+    color:var(--papaya);
+  }
+  .fact .txt{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--ink-soft);
+    margin-top:4px;
+    letter-spacing:0.02em;
+  }
+  .about-art{
+    position:relative;
+    aspect-ratio:1/1;
+    border-radius:var(--radius-lg);
+    background:
+      repeating-linear-gradient(135deg, rgba(242,118,10,0.10) 0 2px, transparent 2px 26px),
+      var(--herb);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+  }
+  .about-art svg{width:64%;}
+
+  /* ---------- MENU ---------- */
+  .menu-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+  }
+  @media(max-width:900px){.menu-grid{grid-template-columns:1fr;}}
+  .menu-card{
+    background:var(--paper-soft);
+    border:1px solid var(--line);
+    border-radius:var(--radius-lg);
+    padding:32px 28px;
+    box-shadow:var(--shadow);
+    transition:transform 0.25s ease;
+  }
+  .menu-card:hover{transform:translateY(-6px);}
+  .menu-card .icon-badge{
+    width:56px; height:56px;
+    border-radius:16px;
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:20px;
+  }
+  .menu-card .icon-badge svg{width:28px; height:28px;}
+  .menu-card:nth-child(1) .icon-badge{background:rgba(242,118,10,0.14);}
+  .menu-card:nth-child(1) .icon-badge svg{stroke:var(--papaya-dark);}
+  .menu-card:nth-child(2) .icon-badge{background:rgba(178,58,46,0.12);}
+  .menu-card:nth-child(2) .icon-badge svg{stroke:var(--berry);}
+  .menu-card:nth-child(3) .icon-badge{background:rgba(63,107,52,0.13);}
+  .menu-card:nth-child(3) .icon-badge svg{stroke:var(--herb);}
+  .menu-card h3{font-size:20px; font-weight:700; margin-bottom:10px;}
+  .menu-card ul{
+    list-style:none;
+    padding:0; margin:16px 0 0;
+    border-top:1px dashed var(--line);
+  }
+  .menu-card li{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    padding:11px 0;
+    border-bottom:1px dashed var(--line);
+    font-size:14.5px;
+    color:var(--ink-soft);
+  }
+  .menu-card li span:last-child{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--ink);
+    font-size:13px;
+    white-space:nowrap;
+  }
+  .menu-note{
+    margin-top:28px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- HOURS + VISIT ---------- */
+  .visit{
+    background:var(--ink);
+    color:var(--paper-soft);
+  }
+  .visit .eyebrow{color:var(--papaya);}
+  .visit .section-head p{color:rgba(251,241,220,0.68);}
+  .visit-grid{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:48px;
+  }
+  @media(max-width:900px){.visit-grid{grid-template-columns:1fr;}}
+
+  table.hours{
+    width:100%;
+    border-collapse:collapse;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+  }
+  table.hours tr{border-bottom:1px solid rgba(251,241,220,0.14);}
+  table.hours td{padding:13px 4px; color:rgba(251,241,220,0.75);}
+  table.hours td:last-child{text-align:right; color:var(--paper-soft);}
+  table.hours tr.today{color:var(--paper-soft);}
+  table.hours tr.today td{color:var(--paper-soft); font-weight:600;}
+  table.hours tr.today td:first-child{color:var(--papaya);}
+  table.hours tr.closed td:last-child{color:var(--berry);}
+
+  .visit-cards{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+  }
+  .visit-card{
+    background:rgba(251,241,220,0.06);
+    border:1px solid rgba(251,241,220,0.14);
+    border-radius:var(--radius-md);
+    padding:22px 22px;
+  }
+  .visit-card .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    color:rgba(251,241,220,0.55);
+    margin-bottom:8px;
+  }
+  .visit-card .value{
+    font-size:16px;
+    line-height:1.5;
+  }
+  .visit-card a.value{text-decoration:none;}
+  .visit-card a.value:hover{color:var(--papaya);}
+  .map-frame{
+    border-radius:var(--radius-md);
+    overflow:hidden;
+    border:1px solid rgba(251,241,220,0.14);
+    height:240px;
+  }
+  .map-frame iframe{width:100%; height:100%; border:0; filter:grayscale(0.15) contrast(1.05);}
+
+  /* ---------- CTA BAND ---------- */
+  .cta-band{
+    background:linear-gradient(120deg, var(--papaya), var(--papaya-dark));
+    color:var(--paper-soft);
+    text-align:center;
+    padding:72px 0;
+  }
+  .cta-band h2{
+    font-size:clamp(1.8rem, 4vw, 2.6rem);
+    font-weight:700;
+    max-width:16ch;
+    margin:0 auto 14px;
+  }
+  .cta-band p{
+    color:rgba(255,251,242,0.85);
+    margin-bottom:30px;
+    font-size:16.5px;
+  }
+  .cta-band .hero-actions{justify-content:center;}
+  .cta-band .btn-ghost{border-color:var(--paper-soft); color:var(--paper-soft);}
+  .cta-band .btn-ghost:hover{background:var(--paper-soft); color:var(--papaya-dark);}
+  .cta-band .btn-primary{background:var(--ink); box-shadow:0 10px 24px -10px rgba(0,0,0,0.5);}
+  .cta-band .btn-primary:hover{background:#1c110b;}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--paper-deep);
+    padding:52px 0 30px;
+  }
+  .footer-top{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    gap:32px;
+    padding-bottom:32px;
+    border-bottom:1px solid var(--line);
+  }
+  .footer-brand{max-width:320px;}
+  .footer-brand p{color:var(--ink-soft); font-size:14.5px; margin-top:12px;}
+  .footer-cols{
+    display:flex;
+    gap:56px;
+    flex-wrap:wrap;
+  }
+  .footer-col .eyebrow{margin-bottom:12px; display:block;}
+  .footer-col ul{list-style:none; margin:0; padding:0;}
+  .footer-col li{margin-bottom:9px; font-size:14.5px; color:var(--ink-soft);}
+  .footer-bottom{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+    padding-top:24px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+
+  /* reveal on scroll */
+  .reveal{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.in{opacity:1; transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand">
+      <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="30" cy="30" r="28" fill="var(--papaya)"/>
+        <path d="M18 34c0-8 5-15 12-15s12 7 12 15" stroke="#FFFBF2" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M16 34h28" stroke="#FFFBF2" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M19 34c0 4 5 7 11 7s11-3 11-7" stroke="#FFFBF2" stroke-width="2.4" stroke-linecap="round"/>
+        <circle cx="30" cy="16" r="3.4" fill="#FFFBF2"/>
+      </svg>
+      <span class="brand-word">Relish Food<span>Bakery · Breakfast · Juice</span></span>
+    </a>
+    <div class="nav-right">
+      <div id="status-pill"><span class="dot" id="status-dot"></span><span id="status-text">Checking hours…</span></div>
+      <a class="btn btn-primary nav-call" href="tel:+2349097619343">Call to order</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Garki II, Abuja · Est. neighbourhood favourite</span>
+        <h1>Fresh bakes,<br>proper breakfast<br>&amp; <em>cold-pressed</em> juice.</h1>
+        <p class="lede">Relish Food is the corner spot near 1st Gate where the bread's still warm, the eggs are made to order, and the juice was fruit an hour ago. Open every day but Tuesday.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="tel:+2349097619343">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            +234 909 761 9343
+          </a>
+          <a class="btn btn-ghost" href="#visit">Get directions</a>
+        </div>
+        <div class="hero-meta">
+          <span><strong>Dine-in</strong> &amp; takeaway</span>
+          <span><strong>7AM–10PM</strong> daily (closed Tue)</span>
+          <span><strong>Good for</strong> kids &amp; groups</span>
+        </div>
+      </div>
+
+      <div class="hero-emblem" aria-hidden="true">
+        <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <path id="emblemArc" d="M 150,150 m -118,0 a 118,118 0 1,1 236,0 a 118,118 0 1,1 -236,0"/>
+          </defs>
+          <circle cx="150" cy="150" r="140" fill="var(--papaya)" opacity="0.08"/>
+          <circle cx="150" cy="150" r="118" fill="none" stroke="var(--ink)" stroke-width="1.4" stroke-dasharray="2 6"/>
+          <text font-family="IBM Plex Mono" font-size="12.5" letter-spacing="4" fill="var(--ink)">
+            <textPath href="#emblemArc" startOffset="2%">RELISH FOOD • FRESH DAILY • GARKI II • ABUJA •</textPath>
+          </text>
+        </svg>
+        <svg class="emblem-static" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="150" cy="150" r="82" fill="var(--paper-soft)" stroke="var(--ink)" stroke-width="1.6"/>
+          <path d="M104 168c0-32 20-58 46-58s46 26 46 58" stroke="var(--papaya-dark)" stroke-width="4" stroke-linecap="round"/>
+          <path d="M96 168h108" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"/>
+          <path d="M102 168c0 14 18 26 48 26s48-12 48-26" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="150" cy="98" r="12" fill="var(--herb)"/>
+          <path d="M150 86v-14" stroke="var(--herb)" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <div class="strip">
+    <div class="wrap">
+      <div class="strip-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12c0-4 3.5-8 8-8s8 4 8 8"/><path d="M2 12h20"/><path d="M4 12c0 3 3.5 6 8 6s8-3 8-6"/></svg>
+        <div><div class="label">Bakery</div><div class="sub">Bread, pastries, small chops</div></div>
+      </div>
+      <div class="strip-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg>
+        <div><div class="label">Breakfast</div><div class="sub">Eggs, plates, hot tea &amp; coffee</div></div>
+      </div>
+      <div class="strip-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10l-1 6a4 4 0 0 1-4 4 4 4 0 0 1-4-4L7 3z"/><path d="M9 13v6a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-6"/></svg>
+        <div><div class="label">Juice Bar</div><div class="sub">Cold-pressed, made fresh</div></div>
+      </div>
+      <div class="strip-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12l1 5H5l1-5z"/><path d="M4 7h16l-1.2 12.2A2 2 0 0 1 16.8 21H7.2a2 2 0 0 1-2-1.8L4 7z"/><path d="M9 11v3M15 11v3"/></svg>
+        <div><div class="label">Takeaway</div><div class="sub">Dine-in seats too</div></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="about" id="about">
+    <div class="wrap about-grid">
+      <div class="about-text reveal">
+        <span class="eyebrow">About Relish</span>
+        <h2>A bakery counter, a breakfast table, and a juice press — under one roof.</h2>
+        <p>Tucked just off Birnin Kebbi Crescent, opposite the housing estate's 1st Gate, Relish Food opens its ovens early and doesn't slow down until 10PM. It's the kind of place where you can grab a loaf on your way to work, sit down for a full breakfast plate with the family, or stop by for a chilled juice on a hot Abuja afternoon.</p>
+        <p>Casual, easy-going, and genuinely good for kids and groups — pull up a chair, or call ahead and we'll have it ready to go.</p>
+        <div class="about-facts">
+          <div class="fact"><div class="num">6</div><div class="txt">DAYS OPEN<br>PER WEEK</div></div>
+          <div class="fact"><div class="num">15</div><div class="txt">HOURS DAILY<br>7AM–10PM</div></div>
+          <div class="fact"><div class="num">4</div><div class="txt">THINGS WE DO<br>WELL</div></div>
+        </div>
+      </div>
+      <div class="about-art reveal" aria-hidden="true">
+        <svg viewBox="0 0 200 200" fill="none">
+          <ellipse cx="100" cy="120" rx="70" ry="24" fill="rgba(251,241,220,0.15)"/>
+          <path d="M55 120c0-32 20-58 45-58s45 26 45 58" stroke="#FFFBF2" stroke-width="5" stroke-linecap="round"/>
+          <path d="M45 120h110" stroke="#FFFBF2" stroke-width="5" stroke-linecap="round"/>
+          <path d="M52 120c0 16 21 30 48 30s48-14 48-30" stroke="#FFFBF2" stroke-width="5" stroke-linecap="round"/>
+          <circle cx="100" cy="50" r="7" fill="var(--papaya)"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section id="menu">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">On the counter</span>
+        <h2>What we're known for</h2>
+        <p>A starting point — swing by or call to hear what's fresh out of the oven and what's in season for juice today.</p>
+      </div>
+      <div class="menu-grid">
+        <div class="menu-card reveal">
+          <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12c0-4 3.5-8 8-8s8 4 8 8"/><path d="M2 12h20"/><path d="M4 12c0 3 3.5 6 8 6s8-3 8-6"/></svg></div>
+          <h3>Fresh Bakes</h3>
+          <ul>
+            <li><span>Sliced loaf, straight from the oven</span></li>
+            <li><span>Meat pies &amp; sausage rolls</span></li>
+            <li><span>Chin chin &amp; puff puff</span></li>
+            <li><span>Doughnuts &amp; small chops trays</span></li>
+          </ul>
+        </div>
+        <div class="menu-card reveal">
+          <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg></div>
+          <h3>Breakfast Plates</h3>
+          <ul>
+            <li><span>Eggs your way, toast on the side</span></li>
+            <li><span>Yam &amp; egg sauce</span></li>
+            <li><span>Pancakes with honey</span></li>
+            <li><span>Hot tea, coffee &amp; Milo</span></li>
+          </ul>
+        </div>
+        <div class="menu-card reveal">
+          <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10l-1 6a4 4 0 0 1-4 4 4 4 0 0 1-4-4L7 3z"/><path d="M9 13v6a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-6"/></svg></div>
+          <h3>Cold-Pressed Juices</h3>
+          <ul>
+            <li><span>Watermelon &amp; mint</span></li>
+            <li><span>Pineapple ginger</span></li>
+            <li><span>Orange &amp; carrot</span></li>
+            <li><span>Zobo, chilled</span></li>
+          </ul>
+        </div>
+      </div>
+      <p class="menu-note">Prices and daily specials available in-store and by phone — call <a href="tel:+2349097619343" style="color:var(--papaya-dark); text-decoration:none;">+234 909 761 9343</a>.</p>
+    </div>
+  </section>
+
+  <section class="visit" id="visit">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Find us</span>
+        <h2>Open most days, easy to find.</h2>
+        <p>Opposite the housing estate's 1st Gate, off Birnin Kebbi Crescent — a short walk from Garki II's main junctions.</p>
+      </div>
+      <div class="visit-grid">
+        <div class="reveal">
+          <table class="hours" id="hours-table">
+            <tbody>
+              <tr data-day="1"><td>Monday</td><td>7AM – 10PM</td></tr>
+              <tr data-day="2" class="closed"><td>Tuesday</td><td>Closed</td></tr>
+              <tr data-day="3"><td>Wednesday</td><td>7AM – 10PM</td></tr>
+              <tr data-day="4"><td>Thursday</td><td>7AM – 10PM</td></tr>
+              <tr data-day="5"><td>Friday</td><td>7AM – 10PM</td></tr>
+              <tr data-day="6"><td>Saturday</td><td>7AM – 10PM</td></tr>
+              <tr data-day="0"><td>Sunday</td><td>7AM – 10PM</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="reveal" style="display:flex; flex-direction:column; gap:16px;">
+          <div class="visit-cards">
+            <div class="visit-card">
+              <div class="label">Address</div>
+              <a class="value" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Opp.+Housing+Estate+1st+Gate+1+Misau+Crescent+Off+Birnin+Kebbi+Crescent+Garki+II+Garki+900103+Abuja+FCT+Nigeria">
+                Opp. Housing Estate, 1st Gate, 1 Misau Crescent,<br>Off Birnin Kebbi Crescent, Garki II,<br>Garki 900103, Abuja, FCT, Nigeria
+              </a>
+            </div>
+            <div class="visit-card">
+              <div class="label">Phone</div>
+              <a class="value" href="tel:+2349097619343">+234 909 761 9343</a>
+            </div>
+          </div>
+          <div class="map-frame">
+            <iframe
+              title="Map to Relish Food, Garki II, Abuja"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=Opp.+Housing+Estate+1st+Gate+1+Misau+Crescent+Off+Birnin+Kebbi+Crescent+Garki+II+Garki+900103+Abuja+FCT+Nigeria&output=embed">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="wrap">
+      <h2>Hungry? Garki II's counter is warm and waiting.</h2>
+      <p>Call ahead for takeaway, or come sit with us — every day but Tuesday, 7AM to 10PM.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="tel:+2349097619343">Call +234 909 761 9343</a>
+        <a class="btn btn-ghost" href="https://wa.me/2349097619343" target="_blank" rel="noopener">Message on WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="brand-word" style="display:flex; align-items:center; gap:10px;">
+          <svg width="30" height="30" viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="28" fill="var(--papaya)"/><path d="M18 34c0-8 5-15 12-15s12 7 12 15" stroke="#FFFBF2" stroke-width="2.4" stroke-linecap="round"/><path d="M16 34h28" stroke="#FFFBF2" stroke-width="2.4" stroke-linecap="round"/><path d="M19 34c0 4 5 7 11 7s11-3 11-7" stroke="#FFFBF2" stroke-width="2.4" stroke-linecap="round"/></svg>
+          Relish Food
+        </span>
+        <p>Neighbourhood bakery, breakfast spot &amp; juice bar in Garki II, Abuja. Casual, kid-friendly, and open most days.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <span class="eyebrow">Visit</span>
+          <ul>
+            <li>Garki II, Abuja FCT</li>
+            <li>Opp. Housing Estate, 1st Gate</li>
+            <li><a href="tel:+2349097619343" style="text-decoration:none;">+234 909 761 9343</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <span class="eyebrow">Hours</span>
+          <ul>
+            <li>Mon, Wed–Sun: 7AM–10PM</li>
+            <li>Tuesday: Closed</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <span class="eyebrow">Categories</span>
+          <ul>
+            <li>Bakery · Restaurant</li>
+            <li>Breakfast · Juice Shop</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Relish Food, Garki II, Abuja.</span>
+      <span>Concept site — for illustration purposes.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ---- Open-now status, derived from real weekly hours ----
+  var hours = {
+    0: {open:7, close:22},   // Sunday
+    1: {open:7, close:22},   // Monday
+    2: null,                 // Tuesday closed
+    3: {open:7, close:22},
+    4: {open:7, close:22},
+    5: {open:7, close:22},
+    6: {open:7, close:22}
+  };
+
+  function updateStatus(){
+    var now = new Date();
+    var day = now.getDay();
+    var hourFloat = now.getHours() + now.getMinutes()/60;
+    var today = hours[day];
+    var isOpen = today && hourFloat >= today.open && hourFloat < today.close;
+
+    var dot = document.getElementById('status-dot');
+    var text = document.getElementById('status-text');
+
+    if(isOpen){
+      dot.classList.remove('closed');
+      var closeH = today.close === 22 ? '10PM' : today.close + ':00';
+      text.textContent = 'Open now · till ' + closeH;
+    } else {
+      dot.classList.add('closed');
+      text.textContent = today ? 'Closed now · opens 7AM' : 'Closed today · opens tomorrow';
+    }
+
+    var rows = document.querySelectorAll('#hours-table tr');
+    rows.forEach(function(row){
+      row.classList.remove('today');
+      if(parseInt(row.getAttribute('data-day'), 10) === day){
+        row.classList.add('today');
+      }
+    });
+  }
+  updateStatus();
+  setInterval(updateStatus, 60000);
+
+  // ---- scroll reveal ----
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {threshold:0.14});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+</script>
+
+</body>
+</html>
